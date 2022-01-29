@@ -1,27 +1,63 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/01/27 08:06:40 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/01/29 20:27:21 by rmoriya          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include <stdio.h>
 #include <string.h>
 #include <stdarg.h>
 #include <unistd.h>
+#include "libft.h"
 
-/*nt ft_printf_format(int c, va_list args)
+static int ft_printf_char(char c)
+{
+    ft_putchar_fd(c, 1);
+    return (1);
+}
+
+static int ft_printf_string(char *s)
+{
+    if (!s)
+        s = "(null)";;
+    ft_putstr_fd(s, 1);
+    return (ft_strlen(s));
+}
+
+static int ft_printf_format(int c, va_list args)
 {
     int n;
 
     n = 0;
     if (c == 'c')
-    {
-        printf("\nprintf_char\n");
-        n = ft_printf_char(va_args, int);
-    }
-    //else if (c == 's')
-    //    n = ft_printf_char(va_args, char*);
+        n = ft_printf_char(va_arg(args, int));
+    else if (c == 's')
+        n = ft_printf_string(va_arg(args, char *));
+    /*else if (c == 'p')
+        n = ft_printf_string(va_arg(args, char*));
+    else if (c == 'd')
+        n = ft_printf_string(va_arg(args, char*));
+    else if (c == 'i')
+        n = ft_printf_string(va_arg(args, char*));
+    else if (c == 'u')
+        n = ft_printf_string(va_args, char*);
+    else if (c == 'x')
+        n = ft_printf_string(va_args, char*);
+    else if (c == 'X')
+        n = ft_printf_string(va_args, char*);
+    else if (c == '%')
+        n = ft_printf_string(va_args, char*);*/
+
     return (n);
 }
-*/
-void    ft_putchar_fd(char c, int fd)
-{
-    write(fd, &c, 1);
-}
+
+
 
 int ft_printf(const char *format, ...)
 {
@@ -37,8 +73,7 @@ int ft_printf(const char *format, ...)
         if (format[i] == '%')
         {
             i++;
-            //len += ft_printf_format(format[i], args);
-            continue;
+            len += ft_printf_format(format[i], args);
         }
         else
         {
@@ -55,7 +90,7 @@ int main()
 {
     size_t  len;
 
-    len = ft_printf("Hello World!%c");
+    len = ft_printf("Hello World!%s", "hello world!");
     putchar('\n');
     printf("len = %zu\n", len);
     return (0);
