@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 08:06:40 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/31 20:14:49 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/01/31 20:23:24 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,14 +136,3 @@ int ft_printf(const char *format, ...)
     return (len);
 }
 
-int main()
-{
-    size_t  len;
-    char *s = "hoge";
-
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
-    putchar('\n');
-    printf("len = %zu\n", len);
-    return (0);
-}
