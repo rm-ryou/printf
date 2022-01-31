@@ -1,25 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 20:22:55 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/31 20:35:31 by rmoriya          ###   ########.fr       */
+/*   Created: 2022/01/28 23:24:36 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/01/29 10:13:29 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-    size_t  len;
-    char *s = "hoge";
+	size_t	i;
+	size_t	tmp;
 
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
-    putchar('\n');
-    printf("len = %zu\n", len);
-    return (0);
+	i = 0;
+	if (!*needle)
+		return ((char *)haystack);
+	while (haystack[i] && i < len)
+	{
+		tmp = 0;
+		while (haystack[i + tmp] == needle[tmp] && \
+				haystack[i + tmp] && i + tmp < len)
+			tmp++;
+		if (needle[tmp] == '\0')
+			return ((char *)&haystack[i]);
+		i++;
+	}
+	return (NULL);
 }

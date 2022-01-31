@@ -1,25 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 20:22:55 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/31 20:35:31 by rmoriya          ###   ########.fr       */
+/*   Created: 2022/01/28 23:23:45 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/01/31 22:29:29 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+char	*ft_strdup(const char *s1)
 {
-    size_t  len;
-    char *s = "hoge";
+	char	*ans;
+	size_t	i;
 
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
-    putchar('\n');
-    printf("len = %zu\n", len);
-    return (0);
+	i = 0;
+	if (!s1)
+		return (NULL);
+	ans = (char *)malloc(sizeof(char) * (ft_strlen(s1) + 1));
+	if (!ans)
+		return (0);
+	while (s1[i])
+	{
+		ans[i] = s1[i];
+		i++;
+	}
+	ans[i] = '\0';
+	return (ans);
 }

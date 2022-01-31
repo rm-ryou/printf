@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 20:22:55 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/31 20:35:31 by rmoriya          ###   ########.fr       */
+/*   Created: 2022/01/28 23:23:45 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/01/29 13:41:05 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
-int main()
+void	*ft_calloc(size_t count, size_t size)
 {
-    size_t  len;
-    char *s = "hoge";
+	void	*part;
 
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
-    putchar('\n');
-    printf("len = %zu\n", len);
-    return (0);
+	if (!count || !size)
+	{
+		count = 1;
+		size = 1;
+	}
+	part = malloc(count * size);
+	if (!part)
+		return (part);
+	ft_bzero(part, count * size);
+	return (part);
 }
