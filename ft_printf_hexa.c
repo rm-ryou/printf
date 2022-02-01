@@ -6,33 +6,38 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/01 13:56:03 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/02/01 17:24:12 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/02/01 21:00:02 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./Libft/libft.h"
 
-static int ft_base_convert(unsigned long long num, char format)
+static void ft_count_hexa(unsigned long long num, char format, int *len)
 {
-    int  i;
-    unsigned long long n;
-
-    i = 0;
-    n = num % 16;
-    num /= 16;
-    if (num > 0)
-        ft_base_convert(num, format);
-    if (n <= 9)
-        i += ft_printf_char(n + '0');
+    if (num >= 16)
+    {
+        ft_count_hexa(num / 16, format, len);
+        num %= 16;
+    }
+    if (num <= 9)
+        *len += ft_printf_char(num + '0');
     else
     {
         if (format == 'x')
-            i += ft_printf_char(n - 10 + 'a');
+            *len += ft_printf_char(num - 10 + 'a');
         else
-            i += ft_printf_char(n - 10 + 'A');
+            *len += ft_printf_char(num - 10 + 'A');
     }
-    return (i);
+}
+
+static int ft_base_convert(unsigned long long num, char format)
+{
+    int  len;
+
+    len = 0;
+    ft_count_hexa(num, format, &len);
+    return (len);
 }
 
 int ft_printf_ptr(unsigned long long ptr)

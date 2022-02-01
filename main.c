@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/31 20:22:55 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/02/01 17:25:50 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/02/01 21:00:38 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,13 @@
 int main()
 {
     size_t  len;
+    size_t len1;
     char *s = "hoge";
 
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
+    len = ft_printf("uint = %p", &s);
     putchar('\n');
-    printf("len = %zu\n", len);
+    len1 = printf("uint = %p", &s);
+    putchar('\n');
+    printf("len  = %zu\nlen1 = %zu\n", len, len1);
     return (0);
 }

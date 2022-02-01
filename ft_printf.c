@@ -6,7 +6,7 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/27 08:06:40 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/02/01 17:23:44 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/02/01 21:01:54 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ int ft_printf_format(va_list args, const char format)
         n = ft_printf_ptr(va_arg(args, unsigned long long));
     else if (format == 'd' || format == 'i')
         n = ft_printf_int(va_arg(args, int));
-    //else if (format == 'u')
-    //    n = ft_printf_uint(va_arg(args, unsigned int));
+    else if (format == 'u')
+        n = ft_printf_uint(va_arg(args, unsigned int));
     else if (format == 'x' || format == 'X')
         n = ft_printf_hexa(va_arg(args, unsigned int), format);
     else if (format == '%')
