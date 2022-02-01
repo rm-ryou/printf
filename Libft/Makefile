@@ -1,5 +1,5 @@
 NAME = libft.a
-INCDIR = -I../include
+INCDIR = -I./
 CC := gcc
 CFLAGS := -Wall -Wextra -Werror
 SRCS = ft_isalpha.c\

@@ -1,26 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_printf_deca.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/31 20:22:55 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/02/01 17:25:50 by rmoriya          ###   ########.fr       */
+/*   Created: 2022/02/01 14:00:53 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/02/01 17:22:58 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./Libft/libft.h"
 
-int main()
+int ft_printf_char(char c)
 {
-    size_t  len;
-    char *s = "hoge";
+    ft_putchar_fd(c, 1);
+    return (1);
+}
 
-    len = ft_printf("Hello World!%x tmp %p", -15, (void *)0);
-    printf("\n printf_p = %x tmp %p\n", 15, (void *)0);
-    putchar('\n');
-    printf("len = %zu\n", len);
-    return (0);
+int ft_printf_string(char *s)
+{
+    if (!s)
+        s = "(null)";;
+    ft_putstr_fd(s, 1);
+    return (ft_strlen(s));
+}
+
+int ft_printf_int(int i)
+{
+    int n;
+    char *str;
+
+    str = ft_itoa(i);
+    n = ft_printf_string(str);
+    free(str);
+    return (n);
 }

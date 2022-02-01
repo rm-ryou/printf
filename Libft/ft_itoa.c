@@ -6,13 +6,13 @@
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/28 23:23:45 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/01/30 19:04:26 by rmoriya          ###   ########.fr       */
+/*   Updated: 2022/02/01 14:03:32 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_num_len(int n)
+static int	ft_num_len(int n)
 {
 	size_t	len;
 
@@ -32,7 +32,7 @@ int	ft_num_len(int n)
 	return (len);
 }
 
-char	*ft_int_min(void)
+static char	*ft_int_min(void)
 {
 	char	*str;
 
