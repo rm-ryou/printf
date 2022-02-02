@@ -1,50 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf_hexa.c                                   :+:      :+:    :+:   */
+/*   ft_printf_ptr.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: rmoriya <rmoriya@student.42tokyo.jp>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/02/01 13:56:03 by rmoriya           #+#    #+#             */
-/*   Updated: 2022/02/02 11:10:48 by rmoriya          ###   ########.fr       */
+/*   Created: 2022/02/02 11:05:12 by rmoriya           #+#    #+#             */
+/*   Updated: 2022/02/02 11:12:14 by rmoriya          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_printf.h"
 #include "./Libft/libft.h"
 
-static void	ft_count_hexa(unsigned int num, char format, int *len)
+static void	ft_count_ptr(unsigned int num, int *len)
 {
 	if (num >= 16)
 	{
-		ft_count_hexa(num / 16, format, len);
+		ft_count_ptr(num / 16, len);
 		num %= 16;
 	}
 	if (num <= 9)
 		*len += ft_printf_char(num + '0');
 	else
-	{
-		if (format == 'x')
-			*len += ft_printf_char(num - 10 + 'a');
-		else
-			*len += ft_printf_char(num - 10 + 'A');
-	}
+        *len += ft_printf_char(num - 10 + 'a');
 }
 
-static int	ft_base_convert(unsigned int num, char format)
+int	ft_printf_ptr(unsigned long long ptr)
 {
 	int	len;
 
-	len = 0;
-	ft_count_hexa(num, format, &len);
-	return (len);
-}
-
-int	ft_printf_hexa(unsigned int num, const char format)
-{
-	int	len;
-
-	len = 0;
-	len += ft_base_convert(num, format);
+	len = 2;
+	ft_printf_string("0x");
+	ft_count_ptr(ptr, &len);
 	return (len);
 }
